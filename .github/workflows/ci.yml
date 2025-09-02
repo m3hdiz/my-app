@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main] # Run on pushes to main
+    branches: [master] # Run on pushes to master
   pull_request:
-    branches: [main] # Run on PRs to main
+    branches: [master] # Run on PRs to master
 
 jobs:
   # 1. Lint step
