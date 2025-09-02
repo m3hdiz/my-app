@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [master] # Run on pushes to master
+    branches: [master]
   pull_request:
-    branches: [master] # Run on PRs to master
+    branches: [master]
 
 jobs:
   # 1. Lint step
@@ -25,6 +25,9 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check lockfile is up-to-date
         run: pnpm install --frozen-lockfile
 
       - name: Run ESLint
@@ -51,9 +54,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Check lockfile is up-to-date
+        run: pnpm install --frozen-lockfile
+
       - name: Run Vitest
         run: pnpm run test:ci
-        # package.json -> "test:ci": "vitest run --coverage"
 
   # 3. Build step
   build:
@@ -74,6 +79,9 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check lockfile is up-to-date
         run: pnpm install --frozen-lockfile
 
       - name: Build project
